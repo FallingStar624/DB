@@ -109,13 +109,25 @@ ORDER BY l.c DESC;
 
 `nested Query`: query문을 이용하여 만든 테이블을 기반으로 다시 Query문을 작성. 말 그대로 Query문이 `nested`되어있는 형태
 
-**해석**
+**Query문 해석**
 
-"/`left 테이블(FROM left)`에서 `c 값이 null이 아니고 f의 값이 'STH'(WHERE c is not null and f = 'STH')`인 row들의 `c, d, e(SELECT c, d, e)` column을 가져온 테이블(as l)/ 
+"[`left 테이블(FROM left)`에서 
+
+`c 값이 null이 아니고 f의 값이 'STH'(WHERE c is not null and f = 'STH')`인 row들의
+
+ `c, d, e(SELECT c, d, e)` column을 가져온 테이블(as l)]
 
 => 여기까지 nested
 
-을 `right 테이블(JOIN right)`과 `두 테이블의 d, e column이 같은 row를 대상(ON l.d = r.d and l.e - r.e)`으로 `left inner join`을 실행한 다음, `left 테이블의 c column을 기준(ORDER BY l.c)`으로 `내림차순(DESC)으로 정렬`"
+을 `right 테이블(JOIN right)`과 
+
+`두 테이블의 d, e column이 같은 row를 대상(ON l.d = r.d and l.e - r.e)`으로 
+
+`left inner join`을 실행한 다음, 
+
+`left 테이블의 c column을 기준(ORDER BY l.c)`으로
+
+ `내림차순(DESC)으로 정렬`"
 
 
 
