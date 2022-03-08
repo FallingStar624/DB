@@ -66,6 +66,14 @@ ON original.column1 = coming.column1
 
 `ON` join 조건
 
+> JOIN 종류
+>
+> - `inner join`:  기준 테이블과 조인 테이블 모두 데이터가 존재해야 조회 가능
+> - `outer join`: 기준 테이블에만 데이터가 존재해도 조회 가능 
+>   - **left** / **right** / **full** => join 기준 기준 테이블/ 참조 테이블/ 모두
+> - `self join`: 동일한 테이블 사이의 join
+>   - ex) 지하철 정보 테이블에서 다음 역에 대한 column이 있는 경우, 다음 역에 대한 정보는 바로 조회 가능 하지만 2 정거장 이후에 대한 정보는 구할 수 없다. 이러한 경우 self join을 사용하여 원하는 정보를 조회할 수 있다.
+
 
 
 ### GROUP BY
@@ -77,9 +85,39 @@ GROUP_BY column1
 ORDER_By column1;
 ```
 
-`GROUP BY`: 
+`GROUP BY`: 해당 column에 속하는 row가 많은 경우, aggregate_func을 사용하여 해당 정보들을 집계 해줌
 
-`aggregate_function`: 
+`aggregate_function`: 변수로 입력한 값들의 집합에 대한 계산을 수행하고 단일 값을 반환
+
+> `AVG`, `COUNT`, `MAX`, `MIN`, `STDEV`,  `SUM`, `VAR` 등이 있음
+
+
+
+### NESTED Query
+
+```sql
+SELECT r.a, r.b, l.c
+FROM (
+	SELECT c, d, e
+	FROM left
+	WHERE c is not null and f = 'STH'
+) As l
+JOIN right r ON l.d = r.d
+and l.e = r.e
+ORDER BY l.c DESC;
+```
+
+`nested Query`: query문을 이용하여 만든 테이블을 기반으로 다시 Query문을 작성. 말 그대로 Query문이 `nested`되어있는 형태
+
+**해석**
+
+"/`left 테이블(FROM left)`에서 `c 값이 null이 아니고 f의 값이 'STH'(WHERE c is not null and f = 'STH')`인 row들의 `c, d, e(SELECT c, d, e)` column을 가져온 테이블(as l)/ 
+
+=> 여기까지 nested
+
+을 `right 테이블(JOIN right)`과 `두 테이블의 d, e column이 같은 row를 대상(ON l.d = r.d and l.e - r.e)`으로 `left inner join`을 실행한 다음, `left 테이블의 c column을 기준(ORDER BY l.c)`으로 `내림차순(DESC)으로 정렬`"
+
+
 
 
 
