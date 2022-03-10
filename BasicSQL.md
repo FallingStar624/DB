@@ -93,6 +93,20 @@ ORDER_By column1;
 
 
 
+### Having
+
+```sql
+SELECT column1, SUM(column2)
+FROM supplychain
+GROUP BY column1
+HAVING AVG(column2) > 1000
+ORDER BY column1;
+```
+
+`HAVING`: GROUP BY 절에서는 WHRER 절을 사용하지 못한다. 대신, HAVING 절을 사용하여 원하는 조건을 작성하면 WHERE 절의 기능을 대체할 수 있다.
+
+
+
 ### NESTED Query
 
 ```sql
