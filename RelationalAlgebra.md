@@ -43,22 +43,26 @@
 
 
 
-#### Projection, $ \pi $
+#### Projection
 
 - Projection list에 있지 않은 attribute(column)들을 삭제
+
 - 결과로 나온 relational instance의 schema는 projection list와 정확히 일치
+
 - projection list는 반드시 중복제거를 해야 사용할 수 있다.
   - "As Martin suggested, <u>Relational Algebra deals with sets</u>, projection, selection, union, intersection are all SET operations."
 
 - 예시
-  $$
-  ^\pi student\_name, gpa^{(student)}
-  $$
+  
+  ![image-20220329162632469](RelationalAlgebra.assets/image-20220329162632469.png)
+  
+  
+  
   이러한 relational expression이 존재할 때, 다음 식의 뜻은 `student`라는 relation에서 `student_name`, `gpa`라는 두 속성을 제외한 나머지 속성들을 삭제하고 결과를 리턴하라는 의미이다. 여기서 $student\_name, gpa$ 가 projection list에 해당한다.
 
 
 
-#### Selection, $ \sigma $
+#### Selection
 
 - 선택 조건을 만족하는 row들을 선택
 
@@ -71,22 +75,22 @@
   - simple conditions: 단순히 변수나 상수를 비교
 
     example)
-    $$
-    ^\sigma gpa > 4 ^{(student)}
-    $$
-    $ gpa > 4 $인 학생들만 조회한 relational instance가 결과로 리턴
+    
+    ![image-20220329162726582](RelationalAlgebra.assets/image-20220329162726582.png)
+    
+     gpa > 4인 학생들만 조회한 relational instance가 결과로 리턴
 
   - complex conditons: `AND`나 `OR`연산자를 통해 simple condition들을 결합
 
     example)
-    $$
-    ^\pi student\_name, gpa^{(^\sigma gpa > 4^{(student)})}
-    $$
-    $ gpa > 4 $인 학생들만 조회한 relational instance가 결과에서 `student_name`과 `gpa`만 출력
+    
+    ![image-20220329162735595](RelationalAlgebra.assets/image-20220329162735595.png)
+    
+    gpa > 4 인 학생들만 조회한 relational instance가 결과에서 `student_name`과 `gpa`만 출력
 
 
 
-####  Union $ \cup $,  Intersection $ \cap $, Set-difference $ -$
+####  Union,  Intersection, Set-difference
 
 - 이 세 가지 집합 연산자를 사용하기 위해서는 `union-compatible`한 input relation 2개가 주어져야 한다.
 - `union-compatible`
@@ -106,9 +110,9 @@
 - 이를 해결하기 위해 `rename` operator를 사용
 
   - example
-    $$
-    \rho (C(1 \rightarrow id1, 5 \rightarrow id2), S1 \times R1)
-    $$
+    
+    ![image-20220329162802381](RelationalAlgebra.assets/image-20220329162802381.png)
+    
     1, 5번째 column의 이름들이 중복된 경우, 각각을 id1, id2로 rename해줌으로써 충돌을 해결
 
     
