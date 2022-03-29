@@ -1,8 +1,7 @@
 # Database Design
 
-## DB Normalization
+### DB Normalization
 
-- 
 - Data 중복이 위험한 이유
   - Update anomaly
   - Insertion anomaly
@@ -37,7 +36,7 @@
     3. 관계 모델이 사용자에게 더 많은 정보를 전달할 수 있도록
     4. 관계들의 집합을 query statistics로부터 중립적이게 한다. (들은 시간이 지남에 따라 변경되기 때문)
 
-## Process of DB Normalization
+### Process of DB Normalization
 
 **예시를 통해 Normalization 과정 설명**
 
@@ -51,7 +50,7 @@
 
 
 
-### 1NF (1st Normal Form)
+#### 1NF (1st Normal Form)
 
 - <u>각각의 column은 반드시 하나의 값만을 가지고 있어야 한다.</u>
 - value들의 집합이나 기록들이 들어가서는 안된다. (위 그림의 Subject)
@@ -64,7 +63,7 @@
 
 
 
-### 2NF (2nd Normal Form)
+#### 2NF (2nd Normal Form)
 
 - 1NF를 만족해야 한다.
 - <u>후보키의 원소가 아닌 속성(`Non-prime attribute`)들이 반드시 후보키 속성들의 전체 집합에 dependent해야 한다. 후보키 속성들 중 일부에만 dependent하면 안된다.</u>
@@ -82,7 +81,7 @@
 
 
 
-### 3NF (3rd Normal Form)
+#### 3NF (3rd Normal Form)
 
 - 2NF를 만족해야 한다.
 
@@ -98,18 +97,11 @@
 
 
 
-## Relational Query Languages
-
-- Query Languages: DB에서 데이터의 조작과 조회를 할 수 있게 해주는 언어
-- 관계형 모델은 간단하고 강력한 QL을 지원한다
-  - 대수/논리에 기반한 강력한 형식 기초
-  - 최적화 가능
-
-
-
-참고: 
+### Reference
 
 [DB Normalization Wikipedia](https://en.wikipedia.org/wiki/Database_normalization)
 
 [함수 종속성 참고](https://untitledtblog.tistory.com/125)
+
+
 
